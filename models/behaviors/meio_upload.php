@@ -83,13 +83,6 @@ class MeioUploadBehavior extends ModelBehavior {
 				trigger_error(sprintf(__d('meio_upload', 'MeioUploadBehavior Error: The field "%s" doesn\'t exists in the model "%s".', true), $field, $model->alias), E_USER_WARNING);
 			}
 
-			// Verifies if the thumbsizes names is alphanumeric
-			foreach ($options['thumbsizes'] as $name => $size) {
-				if (!ctype_alnum($name)) {
-					trigger_error(__d('meio_upload', 'MeioUploadBehavior Error: The thumbsizes names must be alphanumeric.', true), E_USER_ERROR);
-				}
-			}
-
 			// Replace tokens of the dir and field, check it doesn't have a DS on the end
 			$options['dir'] = rtrim($this->_replaceTokens($model, $options['dir'], $field), DS);
 			$options['dir'] = $this->_normalizePath($options['dir']);
